@@ -11,7 +11,7 @@ class AuthViewController: UIViewController {
     
     let googleButton = UIButton(title: "Google", titleColor: .black, backgroundColor: .white, isShadow: true)
     let emailButton = UIButton(title: "Email", titleColor: .white, backgroundColor: .buttonDark())
-    let loginButton = UIButton(title: "Login", titleColor: .buttonRed(), backgroundColor: .white, isShadow: true)
+    let loginButton = UIButton(title: "Login", titleColor: .mainBlue(), backgroundColor: .white, isShadow: true)
     
     
 
@@ -23,19 +23,49 @@ class AuthViewController: UIViewController {
         setupConstrainst()
         
     }
-    
-    private func setupConstrainst(){
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(logoImageView)
-        
-        logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 160).isActive = true
-        logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    }
 
 }
 
 
-// SwiftUI
+// setup our constrantions //
+extension AuthViewController{
+    private func setupConstrainst(){
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        let googleView = ButtonFormView(label: googleLabel, button: googleButton)
+        let emailView = ButtonFormView(label: emailLabel, button: emailButton)
+        let loginView = ButtonFormView(label: alreadyLabel, button: loginButton)
+
+        
+        let StackView = UIStackView(arrangedSubviews: [googleView,emailView,loginView], axis: .vertical, spacing: 40)
+        StackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        view.addSubview(logoImageView)
+        view.addSubview(StackView)
+        
+        
+
+        NSLayoutConstraint.activate([
+            logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            StackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 160),
+            StackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            StackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+        ])
+        
+        StackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 160)
+        StackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40)
+        StackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+
+        
+    }
+}
+
+
+// SwiftUI for canvas //
 import SwiftUI
 
 struct AuthVCProvider: PreviewProvider{
