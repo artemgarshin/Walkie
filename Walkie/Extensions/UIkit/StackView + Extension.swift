@@ -1,14 +1,6 @@
-//
-//  StackView + Extension.swift
-//  Walkie
-//
-//  Created by Артем Гаршин on 08.11.2022.
-//
-
+//stackView cons
 import Foundation
 import UIKit
-
-
 
 extension UIStackView{
     

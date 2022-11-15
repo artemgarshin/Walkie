@@ -1,8 +1,11 @@
+// First View(AuthScreen)
+
 import UIKit
 
 class AuthViewController: UIViewController {
     
     
+    // create object(button or labal)
     let logoImageView = UIImageView(image: #imageLiteral(resourceName: "Logo") , contentMode: .scaleAspectFit)
     
     let googleLabel = UILabel(text: "Get started with")
@@ -27,7 +30,7 @@ class AuthViewController: UIViewController {
 }
 
 
-// setup our constrantions //
+// setup constrantions for this view//
 extension AuthViewController{
     private func setupConstrainst(){
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
