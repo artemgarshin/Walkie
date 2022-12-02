@@ -34,7 +34,9 @@ class LoginViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .white
+        googleButton.customizeGoogleButton()
         setupConstraints()
         
     }
@@ -92,8 +94,6 @@ extension LoginViewController{
         NSLayoutConstraint.activate([
             welcomeBackLablel.topAnchor.constraint(equalTo: view.topAnchor, constant: 160),
             welcomeBackLablel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-            
-        
         ])
         NSLayoutConstraint.activate([
         

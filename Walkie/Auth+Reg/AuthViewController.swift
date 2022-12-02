@@ -20,9 +20,9 @@ class AuthViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        view.backgroundColor = .white
         
+        googleButton.customizeGoogleButton()
+        view.backgroundColor = .white
         setupConstrainst()
         
     }
@@ -54,7 +54,7 @@ extension AuthViewController{
         ])
         
         NSLayoutConstraint.activate([
-            StackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 160),
+            StackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 80),
             StackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             StackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])

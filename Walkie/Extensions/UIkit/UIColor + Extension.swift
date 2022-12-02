@@ -11,6 +11,10 @@ extension UIColor{
         return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
     
+    static func whiteForback() -> UIColor{
+        return #colorLiteral(red: 0.968627451, green: 0.9725490196, blue: 0.9921568627, alpha: 1)
+    }
+    
     static func mainBlue() -> UIColor{
         return #colorLiteral(red: 0.007843137255, green: 0.5215686275, blue: 0.8156862745, alpha: 1)
     }
@@ -20,7 +24,7 @@ extension UIColor{
     }
     
     static func textFieldLightGrey() -> UIColor{
-        return #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        return #colorLiteral(red: 0.9126031995, green: 0.9240919352, blue: 0.923889935, alpha: 1)
     }
     
 }
