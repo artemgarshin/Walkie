@@ -1,9 +1,6 @@
 //
 //  GradientView.swift
 //  Walkie
-//
-//  
-//
 
 
 import UIKit

@@ -1,7 +1,10 @@
 //
-//  MUser.swift
-//  Walkie
-
+//  MChat.swift
+//  IChat
+//
+//  Created by Алексей Пархоменко on 28.01.2020.
+//  Copyright © 2020 Алексей Пархоменко. All rights reserved.
+//
 
 import UIKit
 
@@ -19,4 +22,3 @@ struct MChat: Hashable, Decodable {
         return lhs.id == rhs.id
     }
 }
-

@@ -2,8 +2,6 @@
 //  Bundle-Decodable.swift
 //  Walkie
 //
-//  Created by Артем Гаршин on 27.11.2022.
-//
 
 import Foundation
 import UIKit
