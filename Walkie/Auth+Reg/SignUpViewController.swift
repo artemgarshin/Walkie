@@ -29,14 +29,44 @@ class SignUpViewController: UIViewController {
         button.titleLabel?.font = .avenir20()
         return button
     }()
+    weak var delegate: AuthNavigatingDelegate?
     
     
     override func viewDidLoad(){
-        super.viewDidLoad() // разобраться для чего все нужно
+        super.viewDidLoad()
         
         
         view.backgroundColor = .white
         setupConstraints()
+        
+        signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        
+        
+    }
+    @objc private func signUpButtonTapped(){
+        print(#function)
+        AuthService.shared.register(email: emailTextField.text,
+                                    password: passwordTextField.text,
+                                    confirmPassword: confirmTextField.text) { (result) in
+            switch result {
+            case .success(let user):
+                self.showAlert(with: "Успешно!", and: "Вы зрегестрированы!"){
+                    self.present(SetupProfileViewController(), animated: true, completion: nil)
+                }
+                print(user.email)
+            case .failure(let error):
+                self.showAlert(with: "Ошибка", and: error.localizedDescription)
+            }
+            
+            
+        }
+    }
+    @objc private func loginButtonTapped(){
+        self.dismiss(animated: true){
+            self.delegate?.toLoginVC()
+        }
+
     }
 }
 
@@ -114,4 +144,20 @@ struct SignUpVCProvider: PreviewProvider{
             
         }
     }
+}
+extension UIViewController{
+    
+    
+    func showAlert(with title: String, and messege: String, completion: @escaping () -> Void = { }){
+        let alertController = UIAlertController(title: title, message: messege, preferredStyle: .alert)
+        
+        
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+            completion()
+        }
+        alertController.addAction(okAction)
+        present(alertController, animated: true,completion: nil)
+    }
+    
 }

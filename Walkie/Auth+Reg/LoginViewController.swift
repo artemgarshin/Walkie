@@ -2,10 +2,14 @@
 //  LoginViewController.swift
 //  Walkie
 //
-//  Created by Артем Гаршин on 14.11.2022.
-//
+
 
 import UIKit
+
+protocol AuthNavigatingDelegate:class{
+    func toLoginVC()
+    func toSignUpVC()
+}
 
 
 class LoginViewController: UIViewController{
@@ -31,6 +35,9 @@ class LoginViewController: UIViewController{
         button.titleLabel?.font = .avenir20()
         return button
     }()
+    
+    
+    weak var delegate: AuthNavigatingDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +46,30 @@ class LoginViewController: UIViewController{
         googleButton.customizeGoogleButton()
         setupConstraints()
         
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
     }
-    
+    @objc func loginButtonTapped(){
+        print(#function)
+        AuthService.shared.login(email: emailTextField.text!, password: passwordTextField.text!){ (result) in
+            switch result{
+                
+            case .success(let user):
+                self.showAlert(with: "Успешно!", and: "Вы авторизованы!"){
+                    self.present(MainTabBarController(), animated: true, completion: nil)
+                }
+            case .failure(let error):
+                self.showAlert(with: "Ошибка", and: error.localizedDescription)
+            }
+            
+        }
+    }
+    @objc func signUpButtonTapped(){
+        dismiss(animated: true){ 
+            self.delegate?.toSignUpVC()
+        }
+
+    }
 }
 
 // setup constraints
